@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: saikumar0004/deployment:1.0  # ← YOUR IMAGE
+        image: joindevops/backend:1.0.0 # ← YOUR IMAGE
         ports:
         - containerPort: 8080
 
