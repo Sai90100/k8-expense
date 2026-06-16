@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: mysql
   namespace: expense
-  # labels of deployment resource
   labels:
     app: mysql
     tier: mysql
@@ -23,22 +22,26 @@ spec:
         project: expense
     spec:
       containers:
-      - name: nginx
-        image: saikumar0004/deployment:1.0
+      - name: mysql
+        image: mysql:8.0
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: ExpenseApp@1
 
- ---
-kind: Service
+---
 apiVersion: v1
+kind: Service
 metadata:
   name: mysql
   namespace: expense
 spec:
-  selector: # labels are used as selectors
+  selector:
     app: mysql
     tier: mysql
     project: expense
   ports:
   - protocol: TCP
-    port: 3306 # service port
+    port: 3306
     targetPort: 3306
-        
